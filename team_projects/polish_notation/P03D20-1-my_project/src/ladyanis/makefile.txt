@@ -1,0 +1,23 @@
+BUILDDIR=../../build/
+
+CC=gcc
+CFLAGS=-Wall -Werror -Wextra -std=c11
+
+all: clean polish
+
+polish: polish.o graph.o
+	$(CC) $(CFLAGS) polish.o graph.o -o $(BUILDDIR)graph
+
+polish.o: polish.c
+	$(CC) $(CFLAGS) -c polish.c
+
+graph.o: graph.c
+	$(CC) $(CFLAGS) -c graph.c
+
+rebuild:
+	$(MAKE) clean
+	$(MAKE) all
+
+clean:
+	rm -f *.o
+	rm -f $(BUILDDIR)Q*
